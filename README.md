@@ -43,7 +43,7 @@ As três abordagens implementadas foram:
 3.  **Divide and Cnquer & Multi-agent:** Three agents analyzed each of the inclusion criteria individually, and a boolean logic combine their answers to final decision.
 
 
-## Prompts Utilizados
+## Used Prompts
 
 Below are the **detailed prompts** for each approach.
 
