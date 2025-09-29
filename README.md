@@ -1,40 +1,46 @@
 # Do SLM agents screen papers as well as LLMs?
 
+
 ## Authors: [João Goulart Mendes de Freitas Filho](mailto:joao.filho63204@alunos.ufersa.edu.br) e [Sílvio Roberto Fernandes de Araújo](mailto:silvio@ufersa.edu.br)
 
  
-### Universidade Federal Rural do Semi-Árido (UFERSA), Mossoró - RN - Brasil.
+### [Universidade Federal Rural do Semi-Árido (UFERSA), Mossoró - RN - Brasil](https://ufersa.edu.br/)
 
-### Departamento de Computação
-### Group of Embedded Systems and Computer Architecture 
+### [Departamento de Computação](https://dc.ufersa.edu.br/)
 
-### [ENIAC 2025 - Encontro Nacional de Inteligência Artifial E Computacional](https://bracis.sbc.org.br/2025)
+### [Group of Embedded Systems and Computer Architecture](https://gesyca.ufersa.edu.br/)
+ 
+### [ENIAC 2025 - Encontro Nacional de Inteligência Artifial E Computacional](https://bracis.sbc.org.br/2025/eniac)
+
 
 # Abstract
 
-Systematic Literature Review (SLR) is a important method for summarizing scientific knowledge, especially in evidence-based research. However, this process is complex and time-consuming. One of the most critical and time-demanding steps is article screening, where a large percentage of initially retrieved works are discarded.
-
-
-
-This work investigates the use of Small Language Models (SLMs), executed locally, for the task of article screening—an area with few studies available, despite the promising results obtained with commercial Large Language Models (LLMs). We analyzed three distinct approaches using SLMs and compared them with a commercial LLM as the baseline.
-
-
-
-The results demonstrate that SLMs can achieve good performance when tasks are simplified and divided into subtasks. The Qwen 3-8B model achieved an accuracy of up to 94.35%. In a multi-agent approach, Phi 4-14B and Qwen 3-4B achieved, respectively, 79.5% and 78.8% accuracy compared to the commercial LLM.
+Summarizing scientific knowledge is crucial, and the Systematic Li-
+terature Review is one of the main methods used, especially in evidence-based
+research, being a complex and time-consuming process. This work focuses on
+the article screening stage, which is one of the most critical steps, as the sub-
+sequent phases depend on its quality. The literature shows promising results
+using commercial LLMs such as ChatGPT and Gemini for this task, but there is
+a lack of studies on the use of smaller language models (SLMs) running locally.
+We analyzed three approaches using SLMs in comparison to a commercial LLM
+used as a baseline. The results show good performance from SLMs when tasks
+are stratified and simplified into subtasks. Qwen 3 - 8B achieved an accuracy of
+up to 94.35%. Using a multi-agent approach, Phi 4 - 14B reached 79.5%, and
+Qwen 3 - 4B reached 78.8%, compared to the commercial LLM.
 
 # Methodology
 
 In this study, several open-source SLMs were used, executed through the Ollama platform in their 4-bit quantized versions. The LangChain framework was employed to orchestrate the models, their prompts, and interactions.
 
 
-## Tabela de SLMs
+## Used SLMs table and infos 
 
 <img src="assets/tabela_slms.jpg">
 
 The experimentation was based on an SLR about synthetic data generation for human activity recognition. Three inclusion criteria were defined for screening 619 articles selected from Springer, IEEE, ACM, and Elsevier databases.
 
 
-As três abordagens implementadas foram:
+The three approaches implemented were:
 
 1.  **Single Agent (2 classes):** A single agent classified the articles as "included" or "excluded".
 
