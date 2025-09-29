@@ -8,37 +8,48 @@
 ### Departamento de Computação
 ### Group of Embedded Systems and Computer Architecture 
 
-## [ENIAC 2025 - Encontro Nacional de Inteligência Artifial E Computacional](https://bracis.sbc.org.br/2025)
+### [ENIAC 2025 - Encontro Nacional de Inteligência Artifial E Computacional](https://bracis.sbc.org.br/2025)
 
-## Resumo
+# Abstract
 
-A Revisão Sistemática da Literatura (RSL) é um método crucial para a sumarização do conhecimento científico, especialmente em pesquisas baseadas em evidências. Este processo, no entanto, é complexo e demorado. Uma das etapas mais críticas e que consome mais tempo é a triagem de artigos, onde uma grande porcentagem dos trabalhos inicialmente retornados é descartada.
+Systematic Literature Review (SLR) is a important method for summarizing scientific knowledge, especially in evidence-based research. However, this process is complex and time-consuming. One of the most critical and time-demanding steps is article screening, where a large percentage of initially retrieved works are discarded.
 
-Este trabalho investiga o uso de Modelos de Linguagem Pequenos (SLMs), executados localmente, para a tarefa de triagem de artigos, uma área com poucos estudos disponíveis, apesar dos resultados promissores com Modelos de Linguagem Grandes (LLMs) comerciais. Analisamos três abordagens distintas utilizando SLMs e as comparamos com um LLM comercial como linha de base.
 
-Os resultados demonstram que os SLMs podem atingir um bom desempenho quando as tarefas são simplificadas e divididas em subtarefas. O modelo Qwen 3-8B alcançou uma acurácia de até 94,35%. Em uma abordagem multiagente, o Phi 4-14B e o Qwen 3-4B obtiveram, respectivamente, 79,5% e 78,8% de acurácia em relação ao LLM comercial.
 
-## Metodologia
+This work investigates the use of Small Language Models (SLMs), executed locally, for the task of article screening—an area with few studies available, despite the promising results obtained with commercial Large Language Models (LLMs). We analyzed three distinct approaches using SLMs and compared them with a commercial LLM as the baseline.
 
-Neste estudo, foram utilizados diversos SLMs de código aberto, executados através da plataforma Ollama em suas versões quantizadas de 4 bits. O framework LangChain foi empregado para orquestrar os modelos, seus prompts e interações.
 
-### Tabela de SLMs
+
+The results demonstrate that SLMs can achieve good performance when tasks are simplified and divided into subtasks. The Qwen 3-8B model achieved an accuracy of up to 94.35%. In a multi-agent approach, Phi 4-14B and Qwen 3-4B achieved, respectively, 79.5% and 78.8% accuracy compared to the commercial LLM.
+
+# Methodology
+
+In this study, several open-source SLMs were used, executed through the Ollama platform in their 4-bit quantized versions. The LangChain framework was employed to orchestrate the models, their prompts, and interactions.
+
+
+## Tabela de SLMs
 
 <img src="assets/tabela_slms.jpg">
 
-A experimentação foi baseada em uma RSL sobre a geração de dados sintéticos para o reconhecimento de atividade humana. Foram definidos três critérios de inclusão para a triagem de 619 artigos, selecionados a partir das bases de dados Springer, IEEE, ACM e Elsevier.
+The experimentation was based on an SLR about synthetic data generation for human activity recognition. Three inclusion criteria were defined for screening 619 articles selected from Springer, IEEE, ACM, and Elsevier databases.
+
 
 As três abordagens implementadas foram:
 
-1.  **Agente Único (2 classes):** Um único agente classificava os artigos como "incluído" ou "excluído".
-2.  **Agente Único (5 classes):** Um único agente classificava os artigos em "incluído", "excluído 1", "excluído 2", "excluído 3" ou "indeterminado".
-3.  **Multiagentes:** Três agentes analisavam cada um dos critérios de inclusão individualmente, e um quarto agente realizava a classificação final com base nas respostas dos anteriores.
+1.  **Single Agent (2 classes):** A single agent classified the articles as "included" or "excluded".
 
-### Prompts Utilizados
+2.  **Single Agent (5 classes):** A single agent classified the articles into "included", "excluded 1", "excluded 2", "excluded 3" or "undetermined".
 
-Abaixo estão os prompts detalhados para cada abordagem.
+3.  **Divide and Cnquer & Multi-agent:** Three agents analyzed each of the inclusion criteria individually, and a boolean logic combine their answers to final decision.
 
-#### Abordagem 1: Agente Único (2 classes)
+
+## Prompts Utilizados
+
+Below are the **detailed prompts** for each approach.
+
+
+### Approach 1: Single Agent (2 classes)
+
 ```
 You are an expert in article screening and should follow the inclusion criteria described below:
 The inclusion criteria are:
@@ -58,7 +69,8 @@ Title: {title}
 Abstract: {abstract}
 ```
 
-#### Abordagem 2: Agente Único (5 classes)
+### Approach 2: Single Agent (5 classes)
+
 ```
 You are an expert in article screening and should follow the inclusion criteria described below:
 The inclusion criteria are:
@@ -82,9 +94,10 @@ Title: {title}
 Abstract: {abstract}
 ```
 
-#### Abordagem 3: Multiagentes
+### Approach 3: Multi-agent
 
-**Prompt para os Agentes Verificadores de Critério):**
+**Prompt for the Criterion-Checking Agents):**
+
 ```
 You are an expert in screening scientific articles for literature review on the topic: Human Activity Recognition (HAR).
 
@@ -110,29 +123,35 @@ Now analyze the title and abstract of the following article and classify it.
 Title: {title}
 Abstract: {abstract
 ```
-*(Nota: O `{incluscion_criteria}` foi substituído por por cada critério específico para cada um dos três agentes verificadores)*
 
-## Resultados
+*(Note: `{incluscion_criteria}` was replaced with each specific criterion for each of the three criterion-checking agents)*
 
-Os resultados indicam que a **Abordagem 1** apresentou a maior acurácia, com destaque para os modelos Qwen3_8b (94,35%), Qwen2.5-7b (93,7%) e Phi4_14b (93,38%). No entanto, a falta de rastreabilidade nas exclusões torna essa abordagem insuficiente para o processo de RSL.
+
+# Results
+
+The results indicate that **Approach 1** achieved the highest accuracy, with highlights for the models Qwen3_8b (94.35%), Qwen2.5-7b (93.7%), and Phi4_14b (93.38%). However, the lack of traceability in the exclusions makes this approach insufficient for the SLR process.
+
 
 
 <img src="assets/acuracia_ap1.jpg">
 
 
-A **Abordagem 2** demonstrou uma queda na acurácia em comparação com a primeira, com os melhores desempenhos sendo do Deepseek-r1_14b (64,01%) e Qwen2.5-14b (59,45%).
+**Approach 2** showed a drop in accuracy compared to the first, with the best performances from Deepseek-r1_14b (64.01%) and Qwen2.5-14b (59.45%).
+
 
 <img src="assets/acuracia_ap2.jpg">
 
-A **Abordagem 3**, de "dividir para conquistar", mostrou que a tarefa de verificação final se tornou complexa para um SLM. Os melhores F1-Scores foram obtidos pelos modelos Gemma3_12b, Llama3.1_8b e Qwen3_4b. A acurácia geral, no entanto, foi menor em comparação com a Abordagem 1, com os modelos Phi4_14b e Qwen3_4b apresentando os melhores resultados (79,5% e 78,8%, respectivamente).
+**Approach 3**, the "divide and conquer" strategy, showed that the final verification task became complex for an SLM. The best F1-Scores were obtained by the Gemma3_12b, Llama3.1_8b, and Qwen3_4b models. However, overall accuracy was lower compared to Approach 1, with Phi4_14b and Qwen3_4b achieving the best results (79.5% and 78.8%, respectively).
+
 
 <img src="assets/acuracia_ap3.jpg">
 
-### Outras métricas para avaliaçãp da abordagem 3
+## Other metrics for evaluating approach 3
+
 <img src="assets/f1-prec-recall.jpg">
 
 
-## Citation
+# Citation
 
 ```
 @inproceedings{freitasfilho2025slm,
@@ -144,9 +163,11 @@ A **Abordagem 3**, de "dividir para conquistar", mostrou que a tarefa de verific
 }
 ```
 
-## Contato
+# Contact
 
-Para mais informações, entre em contato com os autores:
+For more information, please contact the authors:
+
 
 * **João Goulart Mendes de Freitas Filho:** joao.filho63204@alunos.ufersa.edu.br
+
 * **Sílvio R. Fernandes:** silvio@ufersa.edu.br
