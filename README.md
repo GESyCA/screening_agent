@@ -1,6 +1,6 @@
 # Do SLM agents screen papers as well as LLMs?
 
-## Autores [João Goulart Mendes de Freitas Filho](mailto:joao.filho63204@alunos.ufersa.edu.br) e [Sílvio R. Fernandes](mailto:silvio@ufersa.edu.br)
+## Authors: [João Goulart Mendes de Freitas Filho](mailto:joao.filho63204@alunos.ufersa.edu.br) e [Sílvio Roberto Fernandes de Araújo](mailto:silvio@ufersa.edu.br)
 
  
 ### Universidade Federal Rural do Semi-Árido (UFERSA), Mossoró - RN - Brasil.
